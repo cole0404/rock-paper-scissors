@@ -8,7 +8,8 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice() {
-    return prompt("Rock, Paper, or Scissors?")
+   let value = prompt("Rock, Paper, or Scissors?");
+   return value.toLowerCase()
 }
 
 function playRound(playerSelection, computerSelection){
@@ -16,11 +17,17 @@ function playRound(playerSelection, computerSelection){
 
     else if (playerSelection == "rock" && computerSelection == "scissors"
         || playerSelection == "scissors" && computerSelection == "paper"
-        ||playerSelection == "paper" && computerSelection == "rock"
+        || playerSelection == "paper" && computerSelection == "rock"
     ) 
-    return "You Win! Congratulations!"
-    
-    else return "You lose!";
+    return "You win! Congratulations!";
+
+    else if (playerSelection == "rock" && computerSelection == "paper"
+        || playerSelection == "scissors" && computerSelection == "rock"
+        || playerSelection == "paper" && computerSelection == "scissors"
+    ) 
+    return "Sorry, you lose!";
+
+    else return "Please enter a valid choice.";
 }
 console.log(computerSelection)
 console.log(playRound(playerSelection, computerSelection));
