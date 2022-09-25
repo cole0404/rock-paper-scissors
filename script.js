@@ -1,5 +1,5 @@
-const playerSelection = getPlayerChoice();
-const computerSelection = getComputerChoice();
+
+let computerSelection = getComputerChoice();
 
 let player = 0;
 let computer = 0;
@@ -41,17 +41,22 @@ function playRound(playerSelection, computerSelection) {
 function game(playerSelection, computerSelection) {
 
     for (let i = 0; i < 5; i++) {
+        let playerSelection = getPlayerChoice();
+        let round = playRound();
+
         playRound(playerSelection, computerSelection);
+         
+         if (round = win) ++ player;
 
-        if (playRound() = win) ++ player;
-
-        else if (playRound() = lose) ++ computer;
-    
-        else if (playRound() = tie) ++ draw;
+         else if (round = lose) ++ computer;
+     
+         else if (round = tie) ++ draw;
      }
 
      
 }
 console.log(computerSelection);
-console.log(playRound(playerSelection, computerSelection));
+console.log(game());
 console.log(player);
+console.log(computer);
+console.log(draw);
