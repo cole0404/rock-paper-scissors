@@ -1,6 +1,10 @@
 const playerSelection = getPlayerChoice();
 const computerSelection = getComputerChoice();
 
+let player = 0;
+let computer = 0;
+let draw = 0;
+
 const win = "You win! Congratulations!";
 const lose = "Sorry, you lose!";
 const tie = "It's a tie!";
@@ -34,12 +38,8 @@ function playRound(playerSelection, computerSelection) {
     else return "Please enter a valid choice.";
 }
 
-// play five rounds; win = ++ player, lose = ++ computer, tie = ++ draw;
-
 function game(playerSelection, computerSelection) {
-    let player = 0;
-    let computer = 0;
-    let draw = 0;
+
     for (let i = 0; i < 5; i++) {
         playRound(playerSelection, computerSelection);
 
@@ -48,10 +48,10 @@ function game(playerSelection, computerSelection) {
         else if (playRound() = lose) ++ computer;
     
         else if (playRound() = tie) ++ draw;
-        console.log(player);
      }
 
      
 }
 console.log(computerSelection);
 console.log(playRound(playerSelection, computerSelection));
+console.log(player);
