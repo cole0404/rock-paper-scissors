@@ -12,9 +12,9 @@ function getComputerChoice() {
     return chosenValue;
 }
 
-function getPlayerChoice() {
-    console.log('working')
-  // return btn.toLowerCase();
+function getPlayerChoice(Event) {
+    let choice = Event.target.innerText.toLowerCase();
+    console.log(choice);
 }
   
 const btn = document.querySelectorAll('button');
