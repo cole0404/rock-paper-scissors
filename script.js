@@ -6,23 +6,24 @@ const win = "You win! Congratulations!";
 const lose = "Sorry, you lose!";
 const tie = "It's a tie!";
 
+const btns = document.querySelectorAll('button');
+btns.forEach((btn) => btn.addEventListener('click', playRound));
+
+let computerSelection = getComputerChoice();
+let playerSelection = getPlayerChoice();
+
 function getComputerChoice() {
     let choices = ["rock","paper","scissors"];
     let chosenValue = choices[Math.floor(Math.random() * choices.length)];
     return chosenValue;
 }
 
-function getPlayerChoice(Event) {
-    let choice = Event.target.innerText.toLowerCase();
-    console.log(choice);
+function getPlayerChoice() {
+    return btns;
 }
-  
-const btn = document.querySelectorAll('button');
-btn.forEach((btn) => btn.addEventListener('click', getPlayerChoice));
 
-
-  
-function playRound(playerSelection, computerSelection) {
+function playRound(player, computer) {
+    console.log(playerSelection);
     if (playerSelection == computerSelection) ++draw, console.log(tie);
 
     else if (playerSelection == "rock" && computerSelection == "scissors"
@@ -37,15 +38,14 @@ function playRound(playerSelection, computerSelection) {
     ) 
     ++ computer, console.log(lose);
 
-    else return "Please enter a valid choice.";
+    else  console.log("Please enter a valid choice.");
 }
 
 // function game() {
 
 //     for (let i = 0; i < 5; i++) {
        
-//         let computerSelection = getComputerChoice();
-//         let playerSelection = getPlayerChoice();
+
 
 //         playRound(playerSelection, computerSelection);
 
@@ -60,5 +60,3 @@ function playRound(playerSelection, computerSelection) {
 
 //     else return tie; 
 //}
-
-console.log(btn);
