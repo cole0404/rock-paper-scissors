@@ -2,14 +2,14 @@ let player = 0;
 let computer = 0;
 let draw = 0;
 
-const win = "You win! Congratulations!";
-const lose = "Sorry, you lose!";
-const tie = "It's a tie!";
-
+const round = document.querySelector('.round');
+const win = document.querySelector('.win');
+const lose = document.querySelector('.lose');
+const tie = document.querySelector('.tie');
+const results = document.querySelector('.results');
 const btns = document.querySelectorAll('button');
 btns.forEach((btn) => btn.addEventListener('click', playRound));
 
-let playerSelection = getPlayerChoice();
 let computerSelection = getComputerChoice();
 
 function getComputerChoice() {
@@ -18,31 +18,27 @@ function getComputerChoice() {
     return chosenValue;
 }
 
-function getPlayerChoice() {
-    btns.forEach((btn) => btn.addEventListener('click', () => {
-        let result = btn.innerText.toLowerCase();
-        return result;
-    }))
-}
+function playRound(event) {
+    playerSelection = event.target.innerText.toLowerCase();
 
-function playRound(player, computer) {
-    console.log(playerSelection);
-    console.log(computerSelection);
-    if (playerSelection == computerSelection) ++draw, console.log(tie);
+    if (playerSelection == computerSelection) 
+    ++draw, tie.textContent = `Ties: ${draw}`,
+    round.textContent = `The Computer and you both picked ${playerSelection}`;
+
 
     else if (playerSelection == "rock" && computerSelection == "scissors"
         || playerSelection == "scissors" && computerSelection == "paper"
         || playerSelection == "paper" && computerSelection == "rock"
     ) 
-    ++ player, console.log(win);
+    ++ player, win.textContent = `Player score: ${player}`,
+    round.textContent = `You picked ${playerSelection} which beats the Computer's ${computerSelection}`;
 
     else if (playerSelection == "rock" && computerSelection == "paper"
         || playerSelection == "scissors" && computerSelection == "rock"
         || playerSelection == "paper" && computerSelection == "scissors"
     ) 
-    ++ computer, console.log(lose);
-
-    else  console.log("Please enter a valid choice.");
+    ++ computer, lose.textContent = `Computer score: ${computer}`,
+    round.textContent = `You picked ${playerSelection} which loses to the Computer's ${computerSelection}`;
 }
 
 // function game() {
