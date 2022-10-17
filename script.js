@@ -9,8 +9,8 @@ const tie = "It's a tie!";
 const btns = document.querySelectorAll('button');
 btns.forEach((btn) => btn.addEventListener('click', playRound));
 
-let computerSelection = getComputerChoice();
 let playerSelection = getPlayerChoice();
+let computerSelection = getComputerChoice();
 
 function getComputerChoice() {
     let choices = ["rock","paper","scissors"];
@@ -19,11 +19,15 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice() {
-    return btns;
+    btns.forEach((btn) => btn.addEventListener('click', () => {
+        let result = btn.innerText.toLowerCase();
+        return result;
+    }))
 }
 
 function playRound(player, computer) {
     console.log(playerSelection);
+    console.log(computerSelection);
     if (playerSelection == computerSelection) ++draw, console.log(tie);
 
     else if (playerSelection == "rock" && computerSelection == "scissors"
