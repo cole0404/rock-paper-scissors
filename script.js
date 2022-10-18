@@ -7,7 +7,12 @@ const win = document.querySelector('.win');
 const lose = document.querySelector('.lose');
 const tie = document.querySelector('.tie');
 const results = document.querySelector('.results');
+const play = document.querySelector('.player');
+const comp = document.querySelector('.computer');
+
 const btns = document.querySelectorAll('button');
+
+
 btns.forEach((btn) => btn.addEventListener('click', playRound));
 
 let computerSelection = getComputerChoice();
@@ -20,43 +25,39 @@ function getComputerChoice() {
 
 function playRound(event) {
     playerSelection = event.target.innerText.toLowerCase();
+    play.textContent = `Player: ${playerSelection}`;
+    comp.textContent = `Computer: ${computerSelection}`;
 
     if (playerSelection == computerSelection) 
     ++draw, tie.textContent = `Ties: ${draw}`,
-    round.textContent = `The Computer and you both picked ${playerSelection}`;
-
+    round.textContent = `Tie!`;
 
     else if (playerSelection == "rock" && computerSelection == "scissors"
         || playerSelection == "scissors" && computerSelection == "paper"
         || playerSelection == "paper" && computerSelection == "rock"
     ) 
     ++ player, win.textContent = `Player score: ${player}`,
-    round.textContent = `You picked ${playerSelection} which beats the Computer's ${computerSelection}`;
+    round.textContent = `${playerSelection} beats ${computerSelection}!`;
 
     else if (playerSelection == "rock" && computerSelection == "paper"
         || playerSelection == "scissors" && computerSelection == "rock"
         || playerSelection == "paper" && computerSelection == "scissors"
     ) 
     ++ computer, lose.textContent = `Computer score: ${computer}`,
-    round.textContent = `You picked ${playerSelection} which loses to the Computer's ${computerSelection}`;
+    round.textContent = `${playerSelection} loses to ${computerSelection}!`;
+
+
 }
 
-// function game() {
-
-//     for (let i = 0; i < 5; i++) {
-       
-
-
-//         playRound(playerSelection, computerSelection);
-
-//         console.log("You picked " + playerSelection + " and the computer chose " + computerSelection);
-//         console.log("Player score: " + player);
-//         console.log("Computer score: " + computer);
-//         console.log("Draws: " + draw);
-//     }
-//     if (player > computer) return win;
+function game() {
+    for (let i = 0; i < 5; i++) {
+        console.log("Player score: " + player);
+        console.log("Computer score: " + computer);
+        console.log("Draws: " + draw);
+    }
+    if (player > computer) results.textContent = `Congratulations, you won!`;
         
-//     else if (computer > player) return lose;
+    else if (computer > player) results.textContent = `You lost, better luck next time!`;
 
-//     else return tie; 
-//}
+    else results.textContent = `Tie game! Try again.`;
+}
