@@ -12,10 +12,7 @@ const comp = document.querySelector('.computer');
 
 const btns = document.querySelectorAll('button');
 
-
 btns.forEach((btn) => btn.addEventListener('click', playRound));
-
-let computerSelection = getComputerChoice();
 
 function getComputerChoice() {
     let choices = ["rock","paper","scissors"];
@@ -24,7 +21,9 @@ function getComputerChoice() {
 }
 
 function playRound(event) {
-    playerSelection = event.target.innerText.toLowerCase();
+    let playerSelection = event.target.innerText.toLowerCase();
+    let computerSelection = getComputerChoice();
+
     play.textContent = `Player: ${playerSelection}`;
     comp.textContent = `Computer: ${computerSelection}`;
 
@@ -37,27 +36,26 @@ function playRound(event) {
         || playerSelection == "paper" && computerSelection == "rock"
     ) 
     ++ player, win.textContent = `Player score: ${player}`,
-    round.textContent = `${playerSelection} beats ${computerSelection}!`;
+    round.textContent = `${playerSelection} beats ${computerSelection}!`,
+    game();
 
     else if (playerSelection == "rock" && computerSelection == "paper"
         || playerSelection == "scissors" && computerSelection == "rock"
         || playerSelection == "paper" && computerSelection == "scissors"
     ) 
     ++ computer, lose.textContent = `Computer score: ${computer}`,
-    round.textContent = `${playerSelection} loses to ${computerSelection}!`;
-
-
+    round.textContent = `${playerSelection} loses to ${computerSelection}!`,
+    game();
 }
 
 function game() {
-    for (let i = 0; i < 5; i++) {
-        console.log("Player score: " + player);
-        console.log("Computer score: " + computer);
-        console.log("Draws: " + draw);
-    }
-    if (player > computer) results.textContent = `Congratulations, you won!`;
-        
-    else if (computer > player) results.textContent = `You lost, better luck next time!`;
+    if (player == 5) round.textContent = `Congratulations, you won!`, disableButtons();
 
-    else results.textContent = `Tie game! Try again.`;
-}
+    else if (computer == 5) round.textContent = `You lost, better luck next time!`, disableButtons();
+    }
+
+function disableButtons() {
+    btns.forEach(elem => {
+        elem.disabled = true
+    })
+    }
